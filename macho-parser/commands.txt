@@ -1,0 +1,3 @@
+./macho_inspect /usr/bin/true
+./macho_inspect /usr/bin/yes
+./macho_inspect /usr/bin/whoami
