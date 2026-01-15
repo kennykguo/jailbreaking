@@ -6,6 +6,38 @@
 #include "../include/macho/loader.h"
 #include "../include/macho/fat.h"
 
+
+// --- FAT64 compatibility shim ---
+// Some fat.h variants omit FAT64 constants/structs.
+// We define a minimal subset when missing to keep the parser portable.
+#ifndef FAT_MAGIC_64
+#define FAT_MAGIC_64  0xcafebabf
+#endif
+
+#ifndef FAT_CIGAM_64
+#define FAT_CIGAM_64  0xbfbafeca
+#endif
+
+#ifndef FAT_MAGIC
+// If FAT_MAGIC is missing entirely, something is very wrong with headers.
+#error "FAT_MAGIC is missing; check your include/mach-o/fat.h"
+#endif
+
+// Define fat_arch_64 if the header doesn't provide a complete definition.
+#ifndef _FAT_ARCH_64
+#define _FAT_ARCH_64
+struct fat_arch_64 {
+    uint32_t cputype;
+    uint32_t cpusubtype;
+    uint64_t offset;
+    uint64_t size;
+    uint32_t align;
+    uint32_t reserved;
+};
+#endif
+
+
+
 static uint32_t bswap32_u(uint32_t x) {
     return ((x & 0x000000FFu) << 24) |
            ((x & 0x0000FF00u) <<  8) |
@@ -215,7 +247,8 @@ int main(int argc, char **argv) {
     }
     fclose(f);
 
-    uint32_t magic = *(uint32_t*)buf;
+    uint32_t magic = 0;
+    memcpy(&magic, buf, sizeof(magic));
 
     int rc;
     if (is_fat_magic(magic)) {
