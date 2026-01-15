@@ -36,25 +36,7 @@ struct fat_arch_64 {
 };
 #endif
 
-// --- Minimal ARM64 thread state for LC_UNIXTHREAD parsing ---
-// These constants and structs normally come from <mach/arm/thread_status.h>.
-#ifndef ARM_THREAD_STATE64
-#define ARM_THREAD_STATE64 6
-#endif
-
-#ifndef ARM_THREAD_STATE64_COUNT
-#define ARM_THREAD_STATE64_COUNT 68
-#endif
-
-struct arm_thread_state64 {
-    uint64_t x[29];
-    uint64_t fp;
-    uint64_t lr;
-    uint64_t sp;
-    uint64_t pc;
-    uint32_t cpsr;
-    uint32_t pad;
-};
+// ARM64 thread state constants/structs are provided by vendored headers.
 
 
 

@@ -113,6 +113,15 @@ explanations of what was done and define the terms used. Write these
 explanations to a markdown file in the active lab folder (e.g.,
 `macho-parser/EXPLANATION.md` for Lab 1).
 
+The explanation file must be written as a learning guide: define every
+Apple-specific term at first use, explain why each step is performed, relate
+concepts back to general OS/runtime principles, and explicitly state what the
+reader should understand after each section.
+
+Assume the reader is new to Apple internals: define core terms like Mach-O,
+FAT/universal, dylib, dyld, linker/loader, and other Apple-specific concepts
+explicitly and verbosely. Favor clarity and redundancy over brevity.
+
 ---
 
 ## End Goal
