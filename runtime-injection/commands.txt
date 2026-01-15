@@ -1,0 +1,8 @@
+# macOS only
+make
+
+# Run target normally (no injection)
+./target
+
+# Run target with injected hook (minimal injector using DYLD_INSERT_LIBRARIES)
+./injector ./hook.dylib ./target
