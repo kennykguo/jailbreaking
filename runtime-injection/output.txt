@@ -1,0 +1,10 @@
+› step 3 - ➜  runtime-injection git:(main) ✗ ./target
+  [target] compute_impl called with x=41
+  [target] result=42
+  ➜  runtime-injection git:(main) ✗ ➜  runtime-injection git:(main) ✗ ./injector ./hook.dylib ./target
+  [hook] compute: hooked
+  [hook] intercepted compute:, x=41
+  [target] compute_impl called with x=41
+  [hook] original returned 42, patching to 1337
+  [target] result=1337
+  ➜  runtime-injection git:(main) ✗

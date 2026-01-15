@@ -204,7 +204,52 @@ control over Obj-C method calls in the process.
 
 ---
 
-## 8) Build and run (macOS)
+## 8) What your actual run proved (mapped to the Lab 2 artifacts)
+
+Here is the exact output you produced, and how each line lines up with the
+Lab 2 goals:
+
+```
+[hook] compute: hooked
+[hook] intercepted compute:, x=41
+[target] compute_impl called with x=41
+[hook] original returned 42, patching to 1337
+[target] result=1337
+```
+
+Line-by-line meaning:
+
+- `[hook] compute: hooked`  
+  This line is printed by the injected dylib. It proves the dylib was loaded
+  by dyld before `main` ran and that the hook installation code executed.
+  That is the **minimal dylib injector** working.
+
+- `[hook] intercepted compute:, x=41`  
+  This is the first line inside the replacement function. It proves that the
+  Objective-C runtime now routes messages for `compute:` to the new IMP. That
+  is the **Obj-C method interceptor** working.
+
+- `[target] compute_impl called with x=41`  
+  This line comes from the original method. It proves that the hook can still
+  call the old implementation after interception. That gives you confidence
+  that interception does not destroy normal behavior.
+
+- `[hook] original returned 42, patching to 1337`  
+  This shows the hook observed the real return value and then changed it.
+  That is the **runtime tracer** (observing) and **return-value patcher**
+  (modifying) working.
+
+- `[target] result=1337`  
+  This shows the target saw the patched return value. That means the hook
+  changed what the rest of the program believes the method returned.
+
+**What you should understand after this section:** the runtime control is
+end-to-end. You inject code, intercept method dispatch, observe inputs and
+outputs, and change behavior inside the running process.
+
+---
+
+## 9) Build and run (macOS)
 
 From `runtime-injection/`:
 
@@ -221,7 +266,7 @@ Expected behavior:
 
 ---
 
-## 9) Arch Linux support (build-only)
+## 10) Arch Linux support (build-only)
 
 The code builds on Arch, but the injection is not functional there because:
 
@@ -236,7 +281,7 @@ requires macOS, but the codebase remains buildable on Arch.
 
 ---
 
-## 10) Lab 2 completion checklist
+## 11) Lab 2 completion checklist
 
 - Minimal dylib injector: done (`injector`)
 - Obj-C method interceptor: done (`hook_install` + IMP swap)
