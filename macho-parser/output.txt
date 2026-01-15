@@ -1,0 +1,33 @@
+   macho-parser   git:(main)  ./macho_inspect macho/true 
+== FAT / Universal Mach-O ==
+fat magic: 0xbebafeca  nfat_arch=2  (swapped=1)
+picked slice 1: cputype=16777228 (ARM64) offset=49152 size=34976
+== Thin Mach-O (64-bit) ==
+CPU type: 16777228 (ARM64)
+Load commands: 16  sizeofcmds=824
+[ 0] LC_SEGMENT_64      (0x19) size=72
+     SEG __PAGEZERO       vm=0x0 size=0x100000000 fileoff=0x0 filesize=0x0 nsects=0
+[ 1] LC_SEGMENT_64      (0x19) size=312
+     SEG __TEXT           vm=0x100000000 size=0x4000 fileoff=0x0 filesize=0x4000 nsects=3
+         SECT __text           seg=__TEXT           addr=0x100000368 size=0x8 off=0x368 align=2 flags=0x80000400
+         SECT __const          seg=__TEXT           addr=0x100000370 size=0x38 off=0x370 align=3 flags=0x0
+         SECT __unwind_info    seg=__TEXT           addr=0x1000003a8 size=0x58 off=0x3a8 align=2 flags=0x0
+[ 2] LC_SEGMENT_64      (0x19) size=72
+     SEG __LINKEDIT       vm=0x100004000 size=0x8000 fileoff=0x4000 filesize=0x48a0 nsects=0
+[ 3] LC_OTHER           (0x80000034) size=16
+[ 4] LC_OTHER           (0x80000033) size=16
+[ 5] LC_OTHER           (0x2) size=24
+[ 6] LC_OTHER           (0xb) size=80
+[ 7] LC_LOAD_DYLINKER   (0xe) size=32
+     dyld=/usr/lib/dyld
+[ 8] LC_UUID            (0x1b) size=24
+     uuid=0dc7587c-94b1-33cd-9b2b-48b098af4ce9
+[ 9] LC_OTHER           (0x32) size=32
+[10] LC_OTHER           (0x2a) size=16
+[11] LC_MAIN            (0x80000028) size=24
+     entryoff=0x368 stacksize=0x0
+[12] LC_LOAD_DYLIB      (0xc) size=56
+     dylib=/usr/lib/libSystem.B.dylib current=0x54c0000 compat=0x10000
+[13] LC_OTHER           (0x26) size=16
+[14] LC_OTHER           (0x29) size=16
+[15] LC_OTHER           (0x1d) size=16
