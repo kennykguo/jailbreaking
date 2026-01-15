@@ -108,6 +108,11 @@ Explain in:
 • No UIKit / Swift / mobile abstractions  
 • Real binaries, real execution flow  
 
+Complete the lab work first, then provide first-principles, verbose
+explanations of what was done and define the terms used. Write these
+explanations to a markdown file in the active lab folder (e.g.,
+`macho-parser/EXPLANATION.md` for Lab 1).
+
 ---
 
 ## End Goal
