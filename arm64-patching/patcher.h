@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#ifndef PATCHER_PAGE_SIZE
+#define PATCHER_PAGE_SIZE 4096
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

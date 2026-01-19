@@ -3,6 +3,8 @@
 
 #include "patcher.h"
 
+__attribute__((aligned(PATCHER_PAGE_SIZE)))
+__attribute__((noinline))
 static int target_function(int x) {
     printf("[target] target_function called with x=%d\n", x);
     return x + 1;
