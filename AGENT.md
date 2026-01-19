@@ -122,6 +122,10 @@ Assume the reader is new to Apple internals: define core terms like Mach-O,
 FAT/universal, dylib, dyld, linker/loader, and other Apple-specific concepts
 explicitly and verbosely. Favor clarity and redundancy over brevity.
 
+When updating Codex chat history snapshots, create a new timestamped pair in
+`codex-snapshots/` (both `.jsonl` and `.txt`) using today's date in the
+filename, rather than overwriting existing files.
+
 ---
 
 ## End Goal
